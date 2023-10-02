@@ -18,6 +18,8 @@ git fetch origin
 git status
 git pull
 
+shiv was here
+
 OR
 If you don't care about any local changes (including untracked or generated files or subrepositories which just happen to be here) and just want a copy from the repo:
 git reset --hard HEAD
