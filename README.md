@@ -13,7 +13,7 @@ How to github 101
 
 #hello this is a testttt
 
-![karla test]("C:\Users\JeksEnterprises\Documents\Data Science\Scripts\Rplot01.png")
+![karla test](file:///C:/Users/JeksEnterprises/Documents/Data%20Science/Scripts/Rplot.pdf)
 
 Getting the most recent version of the repo:
 git fetch origin
