@@ -11,6 +11,8 @@ How to github 101
 7. push 
 8. check in the github whether it worked or not 
 
+#hello this is a testttt
+
 Getting the most recent version of the repo:
 git fetch origin
 git status
