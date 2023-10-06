@@ -13,7 +13,9 @@ How to github 101
 
 #hello this is a testttt
 
-![karla test](file:///C:/Users/JeksEnterprises/Documents/Data%20Science/Scripts/Rplot.pdf)
+![karla test](http://127.0.0.1:40251/graphics/cf04d82a-6164-4461-a2fe-95d66fd80e1a.png)
+
+
 
 Getting the most recent version of the repo:
 git fetch origin
