@@ -27,7 +27,7 @@ This project explores the following hypotheses:
 - Null Hypothesis: There is no significant relationship between flow rates and salamander population size.
 
 ## Plots
-![karla test](C:\Users\JeksEnterprises\Documents\Data Science\my_plot.png)
+![karla test]("C:\Users\JeksEnterprises\Documents\Data Science\my_plot.png")
 
 ## References
 - [Austin Open Data Portal](http://data.austintexas.gov)
