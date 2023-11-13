@@ -1,0 +1,27 @@
+name: "My Name"
+navbar:
+  title: "Group 7 Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Exploratory Analysis"
+      href: ExploratoryAnalysis.html
+    - text: "Data Modeling"
+      href: DataModeling.html
+    - text: "Discussion"
+      href: Discussion.html
+    - text: "Ethics"
+      href: Ethics.html
+    - text: "Conclusion"
+      href: Conclusion.html
+    - text: "Acknowledgments"
+      href: Acknowledgments.html
+    - text: "Bibliography"
+      href: Bibliography.html
+  right: 
+    - icon: fa-envelope fa-lg
+      href: mailto:<your@email.com>
+    - icon: fa-github fa-lg
+      href: http://github.com/USERNAME/
+
+      
