@@ -5,3 +5,51 @@ output:
   html_document: 
     css: "styles.css"
 ---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ pagetitle }}</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #Salamander {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      transition: transform 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace "lizard.jpg" with the actual filename of your lizard image -->
+  <img id="Salamander" src="salamander.png" alt="Salamander Image">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const salamander = document.getElementById('Salamander');
+
+      // Function to move the salamander to a random position on the screen
+      function moveSalamander() {
+        const maxX = window.innerWidth - salamander.clientWidth;
+        const maxY = window.innerHeight - salamander.clientHeight;
+
+        const newX = Math.floor(Math.random() * maxX);
+        const newY = Math.floor(Math.random() * maxY);
+
+        salamander.style.transform = `translate(${newX}px, ${newY}px)`;
+      }
+
+      // Move every 1 second (adjust the interval as needed)
+      setInterval(moveSalamander, 1000);
+
+      // Move initially
+      moveSalamander();
+    });
+  </script>
+</body>
+</html>
