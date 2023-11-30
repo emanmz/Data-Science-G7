@@ -8,48 +8,39 @@ output:
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ pagetitle }}</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
 
-    #Salamander {
-      position: absolute;
-      width: 200px;
-      height: auto;
-      transition: transform 0.5s ease-in-out;
-    }
-  </style>
+        #follow-image {
+            position: absolute;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            width: 100px; /* Set the width of the image */
+        }
+    </style>
+    <title>Cursor Follow Image</title>
 </head>
 <body>
-  <!-- Replace "lizard.jpg" with the actual filename of your lizard image -->
-  <img id="Salamander" src="salamander.png" alt="Salamander Image">
+    <img id="follow-image" src="salamander.png" alt="Follow Cursor Image">
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const salamander = document.getElementById('Salamander');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const image = document.getElementById('follow-image');
 
-      // Function to move the salamander to a random position on the screen
-      function moveSalamander() {
-        const maxX = window.innerWidth - salamander.clientWidth;
-        const maxY = window.innerHeight - salamander.clientHeight;
+            document.addEventListener('mousemove', function (event) {
+                const x = event.clientX;
+                const y = event.clientY;
 
-        const newX = Math.floor(Math.random() * maxX);
-        const newY = Math.floor(Math.random() * maxY);
-
-        salamander.style.transform = `translate(${newX}px, ${newY}px)`;
-      }
-
-      // Move every 1 second (adjust the interval as needed)
-      setInterval(moveSalamander, 1000);
-
-      // Move initially
-      moveSalamander();
-    });
-  </script>
+                // Adjust the image position
+                const transformValue = `translate(${x}px, ${y}px)`;
+                image.style.transform = transformValue;
+            });
+        });
+    </script>
 </body>
 </html>
