@@ -1,0 +1,46 @@
+---
+title: ' '
+pagetitle: 'Your Name'
+output: 
+  html_document: 
+    css: "styles.css"
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #follow-image {
+            position: absolute;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            width: 100px; /* Set the width of the image */
+        }
+    </style>
+    <title>Cursor Follow Image</title>
+</head>
+<body>
+    <img id="follow-image" src="salamander.png" alt="Follow Cursor Image">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const image = document.getElementById('follow-image');
+
+            document.addEventListener('mousemove', function (event) {
+                const x = event.clientX;
+                const y = event.clientY;
+
+                // Adjust the image position
+                const transformValue = `translate(${x}px, ${y}px)`;
+                image.style.transform = transformValue;
+            });
+        });
+    </script>
+</body>
+</html>
