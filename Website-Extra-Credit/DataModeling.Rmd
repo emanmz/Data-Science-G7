@@ -52,8 +52,10 @@ output:
 
 ## Average Salamander Count Per Dissolved Oxygen Count
 ![](AvgSalOxygen.png)
+
 ## Average Salamander Count Over Time
 ![](SalVsTime.png)
+
 ## Average Flow Type Vs Salamander Count
 ![](AvgFlowVsSal.png)
 </html>

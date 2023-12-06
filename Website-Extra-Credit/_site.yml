@@ -19,9 +19,7 @@ navbar:
     - text: "Bibliography"
       href: Bibliography.html
   right: 
-    - icon: fa-envelope fa-lg
-      href: mailto:<your@email.com>
     - icon: fa-github fa-lg
-      href: http://github.com/USERNAME/
+      href: https://github.com/emanmz/Data-Science-G7/blob/main/README.md
 
       
