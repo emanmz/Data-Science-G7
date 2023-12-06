@@ -50,11 +50,10 @@ This project explores the following hypotheses:
 
 ## Modeling:
 
-Some examples of regression we did are here:
+The best regression we had:
 
 ![Model #1](PolynomialRegression.png)
 
-![Model #2](salamander_exponential_regression_plot.png)
 
 ## Ethics:
 
