@@ -1,6 +1,13 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 library(openxlsx)
-
+library(readxl)
+library(ggplot2)
+library(dplyr)
 excel_file <- "~/Data-Science-G7/DATA.xlsx"
 
 #install.packages("readxl")

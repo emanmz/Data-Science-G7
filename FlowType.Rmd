@@ -1,7 +1,13 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 library(openxlsx)
 library(readxl)
 library(ggplot2)
+library(dplyr)
 
 excel_file <- "~/Data-Science-G7/DATA.xlsx"
 sheet_names <- excel_sheets(excel_file)
@@ -44,6 +50,20 @@ plot <- ggplot(averages, aes(x = average_flow, y = Average_salamander)) +
   geom_point(color = "blue") +
   labs(x = "Average Flow Type", y = "Average Salamander Count", 
        title = "Average Salamander Count vs Average Flow Type")
+
+plot
+```
+```{r}
+plot <- ggplot(averages, aes(x = average_flow, y = Average_salamander)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", formula = y ~ exp(x), se = FALSE, color = "red") +
+  labs(x = "Average Flow Type", y = "Average Salamander Count", 
+       title = "Average Salamander Count vs Average Flow Type")
+
+# Fit exponential model
+exp_model <- lm(log(Average_salamander) ~ average_flow, data = averages)
+
+summary(exp_model)
 
 plot
 ```

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 library(openxlsx)
 library(ggplot2)
@@ -69,5 +74,36 @@ print(plot)
 
 # Display the summary of the exponential regression model
 summary(model)
+```
+```{r}
+# Fit a quadratic polynomial regression model
+quadratic_model <- lm(average_salamander ~ poly(AVERAGE_PH, 2), data = merged_data)
+
+# Display the summary of the quadratic model
+summary(quadratic_model)
+
+# Generate a sequence of values for plotting the regression curve
+ph_seq <- seq(min(merged_data$AVERAGE_PH), max(merged_data$AVERAGE_PH), length.out = 100)
+
+# Predict the average salamander count using the quadratic model
+predicted_values <- predict(quadratic_model, newdata = data.frame(AVERAGE_PH = ph_seq))
+
+# Create a data frame for plotting
+plot_data <- data.frame(AVERAGE_PH = ph_seq, predicted_values = predicted_values)
+
+# Visualize the quadratic regression curve along with the data points
+ggplot() +
+  geom_point(data = merged_data, aes(x = AVERAGE_PH, y = average_salamander), color = "blue") +
+  geom_line(data = plot_data, aes(x = AVERAGE_PH, y = predicted_values), color = "red") +
+  labs(x = "Average pH", y = "Average Salamander Count", 
+       title = "Quadratic Polynomial Regression: Average Salamander Count per pH")
+
+```
+```{r}
+library(mgcv)
+gam_model <- gam(average_salamander ~ s(AVERAGE_PH), data = merged_data)
+summary(gam_model)
+plot(gam_model, se = TRUE, col = "blue", main = "GAM: Average PH and Average salamander")
+
 ```
 

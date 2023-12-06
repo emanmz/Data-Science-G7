@@ -1,5 +1,11 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 library(openxlsx)
+library(ggplot2)
 
 excel_file <- "~/Data-Science-G7/DATA.xlsx"
 
