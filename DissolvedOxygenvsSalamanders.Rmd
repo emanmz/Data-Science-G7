@@ -1,0 +1,90 @@
+```{r}
+library(openxlsx)
+
+excel_file <- "~/Data-Science-G7/DATA.xlsx"
+
+#install.packages("readxl")
+library(readxl)
+
+sheet_names = excel_sheets(excel_file)
+#sheet_names
+
+dissolvedOxyvsSal <- read_excel(excel_file, sheet = sheet_names[2])
+
+ggplot(dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "Average Dissolved Oxygen", y = "Average Salamander Count", 
+       title = "Average Salamander Count per Dissolved Oxygen ")
+
+#put units
+```
+```{r}
+# Fit a linear regression model
+linear_model <- lm(average_salamander ~ average_dissolved_oxygen, data = dissolvedOxyvsSal)
+
+# Display the summary of the linear model
+summary(linear_model)
+
+# Visualize the linear regression line along with the data points
+ggplot(dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +
+  labs(x = "Average Dissolved Oxygen", y = "Average Salamander Count", 
+       title = "Average Salamander Count per Dissolved Oxygen")
+```
+```{r}
+# Fit a quadratic polynomial regression model
+quadratic_model <- lm(average_salamander ~ poly(average_dissolved_oxygen, 2), data = dissolvedOxyvsSal)
+
+# Display the summary of the quadratic model
+summary(quadratic_model)
+
+# Generate a sequence of values for plotting the regression curve
+year_seq <- seq(min(dissolvedOxyvsSal$average_dissolved_oxygen), max(dissolvedOxyvsSal$average_dissolved_oxygen), length.out = 100)
+
+# Predict the average dissolved oxygen using the quadratic model
+predicted_values <- predict(quadratic_model, newdata = data.frame(average_dissolved_oxygen = year_seq))
+
+# Create a data frame for plotting
+plot_data <- data.frame(average_dissolved_oxygen = year_seq, predicted_values = predicted_values)
+
+# Visualize the quadratic regression curve along with the data points
+ggplot() +
+  geom_point(data = dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander), color = "blue") +
+  geom_line(data = plot_data, aes(x = average_dissolved_oxygen, y = predicted_values), color = "red") +
+  labs(x = "Average Dissolved Oxygen", y = "Average Salamander Count", 
+       title = "Quadratic Polynomial Regression: Average Salamander Count per Dissolved Oxygen")
+```
+```{r}
+#   exponential regression model
+exp_model <- lm(log(average_salamander) ~ log(average_dissolved_oxygen), data = dissolvedOxyvsSal)
+
+# summary of the exponential model
+summary(exp_model)
+
+# Generate predicted values using the exponential model
+predicted_values <- exp(predict(exp_model, newdata = dissolvedOxyvsSal))
+
+# exponential regression curve along with the data points
+ggplot(dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander)) +
+  geom_point(color = "blue") +
+  geom_line(aes(x = average_dissolved_oxygen, y = predicted_values), color = "red") +
+  labs(x = "Average Dissolved Oxygen", y = "Average Salamander Count", 
+       title = "Log Exponential Regression: Average Salamander Count per Dissolved Oxygen")
+```
+```{r}
+library(mgcv)
+gam_model <- gam(average_salamander ~ s(average_dissolved_oxygen), data = dissolvedOxyvsSal)
+summary(gam_model)
+plot(gam_model, se = TRUE, col = "blue", main = "GAM: Dissolved Oxygen and Average salamander")
+library(ggplot2)
+
+# data frame with predicted values from the GAM model
+predicted_data <- data.frame(average_dissolved_oxygen = dissolvedOxyvsSal$average_dissolved_oxygen,
+                             predicted_values = predict(gam_model, newdata = dissolvedOxyvsSal))
+
+
+```
+
+
