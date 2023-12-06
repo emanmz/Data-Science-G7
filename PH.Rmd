@@ -1,0 +1,73 @@
+```{r}
+library(openxlsx)
+library(ggplot2)
+
+excel_file <- "~/Data-Science-G7/PH.xlsx"
+
+#install.packages("readxl")
+library(readxl)
+sheet_names = excel_sheets(excel_file)
+
+phData <- read_excel(excel_file, sheet = sheet_names[1])
+
+plot <- ggplot(phData, aes(x = YEAR, y = AVERAGE_PH)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "YEAR", y = "AVERAGE_PH", 
+       title = "Average PH per Year")
+plot
+
+```
+```{r}
+excel_file2 <- "~/Data-Science-G7/DATA.xlsx"
+
+#install.packages("readxl")
+library(readxl)
+
+sheet_names2 = excel_sheets(excel_file2)
+#sheet_names
+
+salamanderCount <- read_excel(excel_file2, sheet = sheet_names2[1])
+
+# Merge data based on the common variable "YEAR"
+merged_data <- merge(phData, salamanderCount, by = "YEAR")
+
+# Plot average PH on x-axis and average salamander count on y-axis
+plot <- ggplot(merged_data, aes(x = AVERAGE_PH, y = average_salamander)) +
+  geom_point(color = "blue") +
+  labs(x = "Average PH", y = "Average Salamander Count", 
+       title = "Average PH vs Average Salamander Count")
+plot
+```
+```{r}
+model <- lm(average_salamander ~ AVERAGE_PH, data = merged_data)
+
+# Add regression line to the plot
+plot <- plot + geom_smooth(method = "lm", se = FALSE, color = "red")
+
+# Display the plot
+print(plot)
+
+# Display the summary of the linear regression model
+summary(model)
+```
+```{r}
+# Plot average PH on x-axis and log-transformed average salamander count on y-axis
+plot <- ggplot(merged_data, aes(x = AVERAGE_PH, y = log(average_salamander))) +
+  geom_point(color = "blue") +
+  labs(x = "Average PH", y = "Log(Average Salamander Count)", 
+       title = "Average PH vs Log(Average Salamander Count)")
+
+# Exponential regression
+model <- lm(log(average_salamander) ~ AVERAGE_PH, data = merged_data)
+
+# Add exponential regression line to the plot
+plot <- plot + geom_smooth(method = "lm", se = FALSE, color = "red")
+
+# Display the plot
+print(plot)
+
+# Display the summary of the exponential regression model
+summary(model)
+```
+
