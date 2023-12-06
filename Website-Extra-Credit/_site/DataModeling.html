@@ -307,7 +307,7 @@ $(document).ready(function () {
         }
 
         #follow-image {
-            position: absolute;
+            position: fixed; /* Change from absolute to fixed */
             pointer-events: none;
             transition: transform 0.1s ease-out;
             width: 100px; /* Set the width of the image */
@@ -323,9 +323,13 @@ Cursor Follow Image
         document.addEventListener('DOMContentLoaded', function () {
             const image = document.getElementById('follow-image');
 
+            // Get half of the image width and height
+            const halfWidth = image.width / 2;
+            const halfHeight = image.height / 2;
+
             document.addEventListener('mousemove', function (event) {
-                const x = event.clientX;
-                const y = event.clientY;
+                const x = event.clientX - halfWidth;
+                const y = event.clientY - halfHeight;
 
                 // Adjust the image position
                 const transformValue = `translate(${x}px, ${y}px)`;

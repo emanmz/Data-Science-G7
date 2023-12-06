@@ -1,0 +1,21 @@
+---
+title: "Dissolved Oxygen Analysis"
+author: "Group 7"
+date: "2023-10-04"
+output: html_document
+---
+
+```{r}
+library(openxlsx)
+
+data2 = read.xlsx("~/Data-Science-G7/Average Dissolved Oxygen Per Year.xlsx")
+
+library(ggplot2)
+
+ggplot(data2, aes(x = YEAR, y = average_dissolved_oxygen)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "Year", y = "Average Dissolved Oxygen", 
+       title = "Average Dissolved Oxygen Over the Years")
+```
+
