@@ -28,9 +28,16 @@ This project explores the following hypotheses:
 - Null Hypothesis: There is no significant relationship between flow rates and salamander population size.
 
 ## Plots
-![Average Salamander Count per Dissolved Oxygen](AvgSalPOxy.png)
+![Visualization #1](AvgSalPOxy.png)
 
-![Data Visualization 2](SalamandersBartonSpringsOverTime.png)
+
+![Visualization #2](OxyVsTime.png)
+
+
+![Visualization #3](AvgSalOxygen.png)
+
+
+![Visualization #4](AvgFlowVsSal.png)
 
 ## References
 - [Austin Open Data Portal](http://data.austintexas.gov)
@@ -38,28 +45,7 @@ This project explores the following hypotheses:
 
 
 
-## Table of Contents:
+## Modeling:
 
-- Barton_Springs_Salamanders_DO_and_Flow.csv - Data set
 
-- CopyOfBarton_Springs_Salamanders_DO_and_Flow.csv - Data set 
-
-- DissolvedOxygenOverTime.Rmd - Dissolved Oxygen vs. Time Visualizations and Models Rmd ->
-DissolvedOxygenOverTimeRegression.html
-
-- DATA.xlsx - modified and cleaned up data
-
-- Regression_Analysis.Rmd - Beginning of our regression analysis work. Is not important to view, this was used as a reference for the models we used in the report. 
-
-- Average Dissolved Oxygen Per Year.xlsx - Data set for average dissolved oxygen over time.
-
-- DissolvedOxygenvsSalamanders.Rmd - Dissolved Oxygen vs. Salamanders Visualizations and Models
-DissolvedOxygenvsSalamanders.html
-
-- TimeVsSalamander.Rmd - Time vs Salamander Visualizations and Models 
-TimeVsSalamander.html
-
-- Website-Extra-Credit - The extra credit website made. You need to knit a Rmd file to get the whole website.
-
-- Misc - Extra files unrelated to the current report but part of the process of our project.
 
