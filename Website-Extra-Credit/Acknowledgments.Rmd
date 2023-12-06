@@ -1,7 +1,0 @@
----
-title: ' '
-pagetitle: 'Your Name'
-output: 
-  html_document: 
-    css: "styles.css"
----
