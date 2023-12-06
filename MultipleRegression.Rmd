@@ -1,0 +1,61 @@
+```{r}
+
+#  required libraries
+library(openxlsx)
+library(ggplot2)
+library(readxl)
+
+# Read data from PH file
+phFile <- "~/Data-Science-G7/PH.xlsx"
+phData <- read_excel(phFile, sheet = 1)
+
+# Read data from DATA file
+excel_file <- "~/Data-Science-G7/DATA.xlsx"
+timeVsSalamander <- read_excel(excel_file, sheet = 1)
+OxyVsSalamander <- read_excel(excel_file, sheet = 2)
+
+# Read data from flowRate file
+flowRatefile <- "~/Data-Science-G7/flow_1.xlsx"
+flowVsSalamander <- read_excel(flowRatefile, sheet = 3)
+
+# Rename the column from "Year" to "YEAR" in flowVsSalamander
+colnames(flowVsSalamander)[colnames(flowVsSalamander) == "Year"] <- "YEAR"
+
+# Merge data frames based on the "YEAR" column
+merged_data <- merge(merge(merge(phData, timeVsSalamander, by = "YEAR"), OxyVsSalamander, by = c("YEAR", "average_salamander")), flowVsSalamander, by = "YEAR")
+
+merged_data <- merged_data[, !(names(merged_data) %in% c("Average_salamander_count"))]
+
+summary(merged_data)
+```
+
+```{r}
+# Assuming merged_data is your data frame
+cor_matrix <- cor(merged_data[, c("average_dissolved_oxygen", "AVERAGE_PH", "average_salamander", "Average_flow")])
+
+# Print the correlation matrix
+print(cor_matrix)
+
+# Increase the size of the plotting area
+par(mar = c(5, 5, 4, 2) + 1)  # Adjust the margin to make room for variable names
+
+# Plot a heatmap without axis labels
+heatmap(cor_matrix, 
+        col = colorRampPalette(c("blue", "white", "green"))(50), 
+        main = "Correlation Heatmap",
+        xlab = NULL,
+        ylab = NULL,
+        cexRow = 1.2,  # Increase the size of the row labels
+        cexCol = .45   # Increase the size of the column labels
+)
+
+```
+```{r}
+
+model <- lm(average_salamander ~ AVERAGE_PH + average_dissolved_oxygen + Average_flow, data = merged_data)
+
+# summary of the regression model
+summary(model)
+
+```
+
