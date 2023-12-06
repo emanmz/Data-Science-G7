@@ -100,81 +100,9 @@ summary(model_logistic)
 
 
 ```
-```{r}
-library(openxlsx)
 
-data2 = read.xlsx("~/Data-Science-G7/Average Dissolved Oxygen Per Year.xlsx")
 
-library(ggplot2)
 
-ggplot(data2, aes(x = YEAR, y = average_dissolved_oxygen)) +
-  geom_line(color = "blue") +
-  geom_point(color = "blue") +
-  labs(x = "Year", y = "Average Dissolved Oxygen", 
-       title = "Average Dissolved Oxygen Over the Years")
 
-```
-```{r}
-# Fit a linear regression model
-linear_model <- lm(average_dissolved_oxygen ~ YEAR, data = data2)
 
-# Display the summary of the linear model
-summary(linear_model)
-
-# Visualize the linear regression line along with the data points
-ggplot(data2, aes(x = YEAR, y = average_dissolved_oxygen)) +
-  geom_point(color = "blue") +
-  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +
-  labs(x = "Year", y = "Average Dissolved Oxygen", 
-       title = "Linear Regression: Average Dissolved Oxygen Over the Years")
-```
-```{r}
-# Fit a quadratic polynomial regression model
-quadratic_model <- lm(average_dissolved_oxygen ~ poly(YEAR, 2), data = data2)
-
-# Display the summary of the quadratic model
-summary(quadratic_model)
-
-# Generate a sequence of values for plotting the regression curve
-year_seq <- seq(min(data2$YEAR), max(data2$YEAR), length.out = 100)
-
-# Predict the average dissolved oxygen using the quadratic model
-predicted_values <- predict(quadratic_model, newdata = data.frame(YEAR = year_seq))
-
-# Create a data frame for plotting
-plot_data <- data.frame(YEAR = year_seq, predicted_values = predicted_values)
-
-# Visualize the quadratic regression curve along with the data points
-ggplot() +
-  geom_point(data = data2, aes(x = YEAR, y = average_dissolved_oxygen), color = "blue") +
-  geom_line(data = plot_data, aes(x = YEAR, y = predicted_values), color = "red") +
-  labs(x = "Year", y = "Average Dissolved Oxygen", 
-       title = "Quadratic Polynomial Regression: Average Dissolved Oxygen Over the Years")
-
-```
-```{r}
-#   exponential regression model
-exp_model <- lm(log(average_dissolved_oxygen) ~ YEAR, data = data2)
-
-# summary of the exponential model
-summary(exp_model)
-
-# Generate predicted values using the exponential model
-predicted_values <- exp(predict(exp_model, newdata = data2))
-
-# exponential regression curve along with the data points
-ggplot(data2, aes(x = YEAR, y = average_dissolved_oxygen)) +
-  geom_point(color = "blue") +
-  geom_line(aes(x = YEAR, y = predicted_values), color = "red") +
-  labs(x = "Year", y = "Average Dissolved Oxygen", 
-       title = "Exponential Regression: Average Dissolved Oxygen Over the Years")
-
-```
-```{r}
-library(mgcv)
-gam_model <- gam(average_dissolved_oxygen ~ s(YEAR), data = data2)
-summary(gam_model)
-plot(gam_model, se = TRUE, col = "blue", main = "GAM: Smooth Term per YEAR")
-
-```
 

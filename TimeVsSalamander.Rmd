@@ -1,0 +1,84 @@
+```{r}
+library(openxlsx)
+
+excel_file <- "~/Data-Science-G7/DATA.xlsx"
+
+#install.packages("readxl")
+library(readxl)
+
+sheet_names = excel_sheets(excel_file)
+#sheet_names
+
+avgSalpYear <- read_excel(excel_file, sheet = sheet_names[1])
+
+ggplot(avgSalpYear, aes(x = YEAR, y = average_salamander)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "Year", y = "Average Salamander Count", 
+       title = "Average Salamander Count per Year ")
+
+```
+```{r}
+# Fit a linear regression model
+linear_model <- lm(average_salamander ~ YEAR, data = avgSalpYear)
+
+# Display the summary of the linear model
+summary(linear_model)
+
+# Visualize the linear regression line along with the data points
+ggplot(avgSalpYear, aes(x = YEAR, y = average_salamander)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +
+  labs(x = "Year", y = "Average Salamander Count", 
+       title = "Average Salamander Count per Year")
+```
+```{r}
+# Fit a quadratic polynomial regression model
+quadratic_model <- lm(average_salamander ~ poly(YEAR, 2), data = avgSalpYear)
+
+# Display the summary of the quadratic model
+summary(quadratic_model)
+
+# Generate a sequence of values for plotting the regression curve
+year_seq <- seq(min(avgSalpYear$YEAR), max(avgSalpYear$YEAR), length.out = 100)
+
+# Predict the average dissolved oxygen using the quadratic model
+predicted_values <- predict(quadratic_model, newdata = data.frame(YEAR = year_seq))
+
+# Create a data frame for plotting
+plot_data <- data.frame(YEAR = year_seq, predicted_values = predicted_values)
+
+# Visualize the quadratic regression curve along with the data points
+ggplot() +
+  geom_point(data = avgSalpYear, aes(x = YEAR, y = average_salamander), color = "blue") +
+  geom_line(data = plot_data, aes(x = YEAR, y = predicted_values), color = "red") +
+  labs(x = "YEAR", y = "Average Salamander Count", 
+       title = "Quadratic Polynomial Regression: Average Salamander Count per YEAR")
+```
+```{r}
+#   exponential regression model
+exp_model <- lm(log(average_salamander) ~ log(YEAR), data = avgSalpYear)
+
+# summary of the exponential model
+summary(exp_model)
+
+# Generate predicted values using the exponential model
+predicted_values <- exp(predict(exp_model, newdata = avgSalpYear))
+
+# exponential regression curve along with the data points
+ggplot(avgSalpYear, aes(x = YEAR, y = average_salamander)) +
+  geom_point(color = "blue") +
+  geom_line(aes(x = YEAR, y = predicted_values), color = "red") +
+  labs(x = "YEAR", y = "Average Salamander Count", 
+       title = "Log Exponential Regression: Average Salamander Count per YEAR")
+```
+```{r}
+library(mgcv)
+gam_model <- gam(average_salamander ~ s(YEAR), data = avgSalpYear)
+summary(gam_model)
+plot(gam_model, se = TRUE, col = "blue", main = "GAM: YEAR and Average salamander")
+
+
+
+```
+

@@ -11,11 +11,14 @@ sheet_names = excel_sheets(excel_file)
 
 dissolvedOxyvsSal <- read_excel(excel_file, sheet = sheet_names[2])
 
-ggplot(dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander)) +
+plot <- ggplot(dissolvedOxyvsSal, aes(x = average_dissolved_oxygen, y = average_salamander)) +
   geom_line(color = "blue") +
   geom_point(color = "blue") +
   labs(x = "Average Dissolved Oxygen", y = "Average Salamander Count", 
-       title = "Average Salamander Count per Dissolved Oxygen ")
+       title = "Average Salamander Count per Dissolved Oxygen")
+plot
+
+ggsave(filename = "~/Data-Science-G7/AvgSalPOxy.png", plot = plot)
 
 #put units
 ```

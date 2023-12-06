@@ -1,35 +1,65 @@
-# Data-Science-G7
-Group 7 Data Science: Barton Springs Salamanders DO and Flow :)
-How to github 101 
-1. git clone (url) (YOU ONLY NEED TO DO THIS ONCE)
+# Barton Springs Salamander Data Analysis Project
 
-2. cd to the project
-3. edit stuff 
-4. commit 
-5. add commit message 
-6. :wq 
-7. push 
-8. check in the github whether it worked or not 
+## Project Description
+This data science project investigates the relationship between water quality parameters and the population sizes of Barton Springs Salamanders in Austin, Texas. Barton Springs Salamanders are a vulnerable species, and understanding how water quality affects their population is crucial for ecological preservation. This project utilizes a dataset obtained from the [Austin Open Data Portal](http://data.austintexas.gov) to conduct a comprehensive analysis.
 
-#hello this is a testttt
+## Goals
+The primary goals of this project are as follows:
+  1. Analyze the relationship between Dissolved Oxygen (DO) levels and the population of Barton Springs Salamanders.
+2. Investigate the impact of flow rates on the salamander population.
+3. Contribute to informed decision-making for ecological protection and restoration efforts in Barton Springs.
 
-![karla test](http://127.0.0.1:40251/graphics/f8e6ad12-fd58-4a8d-aeb3-aaa5652e5b0f.png)
+## Data Source
+The dataset used for this analysis is titled "Barton Springs Salamanders - DO and Flow" and can be accessed through the [Austin Open Data Portal](https://data.austintexas.gov/Environment/Barton-Springs-Salamanders-DO-and-Flow/pyic-v8yf). The dataset contains approximately 40,000 data points with eight columns, including:
+  - Watershed location
+- Date and time of data collection
+- Site name
+- Longitude and latitude coordinates
+- Site type (e.g., spring)
+- Medium (e.g., groundwater, benthic)
+- Parameter (e.g., dissolved oxygen, salamander size)
+
+## Hypotheses
+This project explores the following hypotheses:
+
+  1. **Hypothesis 1:** Increased levels of Dissolved Oxygen (DO) in a Barton spring will lead to a larger population of salamanders.
+- Null Hypothesis: There is no significant relationship between DO levels and salamander population size.
+2. **Hypothesis 2:** Higher flow rates will result in a smaller population of salamanders.
+- Null Hypothesis: There is no significant relationship between flow rates and salamander population size.
+
+## Plots
+![Average Salamander Count per Dissolved Oxygen](AvgSalPOxy.png)
+
+![Data Visualization 2](SalamandersBartonSpringsOverTime.png)
+
+## References
+- [Austin Open Data Portal](http://data.austintexas.gov)
+- Dataset Source: [Barton Springs Salamanders - DO and Flow](https://data.austintexas.gov/Environment/Barton-Springs-Salamanders-DO-and-Flow/pyic-v8yf)
 
 
 
+## Table of Contents:
 
-Getting the most recent version of the repo:
-git fetch origin
-git status
-git pull
+- Barton_Springs_Salamanders_DO_and_Flow.csv - Data set
 
+- CopyOfBarton_Springs_Salamanders_DO_and_Flow.csv - Data set 
 
-OR
-If you don't care about any local changes (including untracked or generated files or subrepositories which just happen to be here) and just want a copy from the repo:
-git reset --hard HEAD
-git clean -xffd
-git pull
-https://stackoverflow.com/questions/6335681/how-do-i-get-the-latest-version-of-my-code
+- DissolvedOxygenOverTime.Rmd - Dissolved Oxygen vs. Time Visualizations and Models Rmd ->
+DissolvedOxygenOverTimeRegression.html
 
+- DATA.xlsx - modified and cleaned up data
 
-![Miranda test image](https://edupod.cns.utexas.edu/rstudio/graphics/4b6b507d-0564-4147-a9fb-08afc9b1a525.png)
+- Regression_Analysis.Rmd - Beginning of our regression analysis work. Is not important to view, this was used as a reference for the models we used in the report. 
+
+- Average Dissolved Oxygen Per Year.xlsx - Data set for average dissolved oxygen over time.
+
+- DissolvedOxygenvsSalamanders.Rmd - Dissolved Oxygen vs. Salamanders Visualizations and Models
+DissolvedOxygenvsSalamanders.html
+
+- TimeVsSalamander.Rmd - Time vs Salamander Visualizations and Models 
+TimeVsSalamander.html
+
+- Website-Extra-Credit - The extra credit website made. You need to knit a Rmd file to get the whole website.
+
+- Misc - Extra files unrelated to the current report but part of the process of our project.
+
