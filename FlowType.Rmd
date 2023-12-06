@@ -1,0 +1,50 @@
+```{r}
+library(openxlsx)
+library(readxl)
+library(ggplot2)
+
+excel_file <- "~/Data-Science-G7/DATA.xlsx"
+sheet_names <- excel_sheets(excel_file)
+
+flowData <- read_excel(excel_file, sheet = sheet_names[3])
+
+# Replace values of 5 with 0 in the RESULT column
+flowData$RESULT <- ifelse(flowData$RESULT == 6, 0, flowData$RESULT)
+
+# Your plotting code
+plot <- ggplot(flowData, aes(x = YEAR, y = RESULT)) +
+  geom_point(color = "blue") +
+  labs(x = "Year", y = "Flow Type", 
+       title = "Flow Type per Year: FLOW SEVERITY CODE (0=DRY; 1=NONE; 2=LOW; 3=NORM; 4=FLOOD; 5=HIGH)")
+
+# Customize breaks on the y-axis
+plot + scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5, 6))
+
+```
+```{r}
+# Calculate average flows per year
+average_flows <- flowData %>%
+  group_by(YEAR) %>%
+  summarise(average_flow = mean(RESULT))
+
+# Your plotting code
+plot <- ggplot(average_flows, aes(x = YEAR, y = average_flow)) +
+  geom_point(stat = "identity", fill = "blue") +
+  labs(x = "Year", y = "Average Flow Type", 
+       title = "Average Flow Type per Year: FLOW SEVERITY CODE (0=DRY; 1=NONE; 2=LOW; 3=NORM; 4=FLOOD; 5=HIGH)")
+
+plot
+```
+```{r}
+salamanderData <- read_excel(excel_file, sheet = sheet_names[4])
+
+averages <- merge(average_flows, salamanderData, by = "YEAR", all.x = TRUE)
+
+plot <- ggplot(averages, aes(x = average_flow, y = Average_salamander)) +
+  geom_point(color = "blue") +
+  labs(x = "Average Flow Type", y = "Average Salamander Count", 
+       title = "Average Salamander Count vs Average Flow Type")
+
+plot
+```
+

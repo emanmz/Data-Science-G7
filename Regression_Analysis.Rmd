@@ -48,7 +48,7 @@ gg_exp <- ggplot(total_salamander_data, aes(x = SITE_NAME, y = RESULT)) +
        x = "Site Name",
        y = "Salamander Count (log scale)") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
+gg_exp
 # Save the ggplot as a PNG file
 ggsave("salamander_exponential_regression_plot.png", gg_exp, width = 10, height = 6, units = "in")
 

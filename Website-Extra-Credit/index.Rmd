@@ -6,7 +6,6 @@ output:
     css: "styles.css"
 ---
 
-# Barton Springs Salamanders and their Habitat
 
 ![](avatar.jpg){width=20%}
 
@@ -18,12 +17,13 @@ The initial hypothesis suggests a potential significant correlation between high
 
 ## Contents of this website:
 
-- [Exploratory Analysis](/ExploratoryAnalysis)
-- [Data Modeling](/DataModeling)
-- [Discussion](/Discussion)
-- [Ethics](/Ethics)
-- [Conclusion](/Conclusion)
-- [Acknowledgments](/Acknowledgments)
-- [Bibliography](/Bibliography)
+- [Exploratory Analysis](ExploratoryAnalysis.html)
+- [Data Modeling](DataModeling.html)
+- [Discussion](Discussion.html)
+- [Ethics](Ethics.html)
+- [Conclusion](Conclusion.html)
+- [Acknowledgments](Acknowledgments.html)
+- [Bibliography](Bibliography.html)
+
 
 To see the original data, look [here](https://data.austintexas.gov/Environment/Barton-Springs-Salamanders-DO-and-Flow/pyic-v8yf).

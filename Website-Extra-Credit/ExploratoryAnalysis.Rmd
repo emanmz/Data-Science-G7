@@ -1,7 +1,35 @@
 ---
 title: ' '
-pagetitle: 'Your Name'
+pagetitle: 'Exploratory Analysis'
 output: 
   html_document: 
     css: "styles.css"
 ---
+
+# Exploratory Analysis: Barton Springs Salamander Habitat
+
+## Introduction
+
+This report delves into the fascinating world of the Barton Springs salamander, a unique and endangered species inhabiting the Barton Springs in Austin, Texas. Our analysis aims to uncover the intricate relationship between water quality parameters and the population sizes of these salamanders.
+
+## Objective
+
+The primary objective of this exploration is to understand how variations in water quality, specifically dissolved oxygen levels and flow rates, impact the population sizes of Barton Springs Salamanders. By conducting a thorough analysis, we hope to contribute valuable insights into the preservation and protection of this endangered species and its habitat.
+
+## Background and Motivations
+
+Barton Springs, nurtured by the Edwards Aquifer, stands as one of the four distinct water springs in the region. It hosts a diverse ecosystem, home to over 50 species of plants and animals found nowhere else on Earth. Among these unique inhabitants, the Barton Springs salamander holds a special place as an endangered species. Serving as a keystone species, its presence is vital for the survival of other species within the ecosystem. The disappearance of the Barton Springs salamander could lead to significant and detrimental changes in the habitat.
+
+Our exploration stems from the critical need to understand the correlation between water quality parameters and the population sizes of Barton Springs salamanders. These amphibians absorb oxygen through their skin, making them highly sensitive to water quality. The focus on this specific issue is driven by the urgency to address environmental challenges and ensure the sustainability of this delicate ecosystem.
+
+## Dataset
+
+### Objective
+
+The dataset under scrutiny provides comprehensive information spanning from July 1990 to August 2023. It encompasses salamander counts, dissolved oxygen levels, and flow rates in Barton Springs. This dataset serves as the foundation for our analysis, allowing us to draw connections between water quality parameters and the well-being of the Barton Springs salamander population.
+
+## Exploration Process
+
+Stay tuned as we delve deeper into the dataset, conduct exploratory analyses, and unveil the patterns and insights that lie within the numbers. Our findings will not only contribute to scientific understanding but will also play a crucial role in the ongoing efforts to preserve and protect the Barton Springs salamander and its unique habitat.
+
+Go to Data Modeling for a look into how we plotted the data and the hypothesis we had going in. 
