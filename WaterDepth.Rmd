@@ -1,0 +1,85 @@
+```{r}
+waterDepth <- "~/Data-Science-G7/WaterDepth.xlsx"
+
+#install.packages("readxl")
+library(readxl)
+library(ggplot2)
+sheet_names = excel_sheets(waterDepth)
+waterDepth <- read_excel(waterDepth, sheet = sheet_names[1])
+
+excel_file2 <- "~/Data-Science-G7/DATA.xlsx"
+
+#install.packages("readxl")
+
+sheet_names2 = excel_sheets(excel_file2)
+#sheet_names
+
+salamanderCount <- read_excel(excel_file2, sheet = sheet_names2[1])
+summary(salamanderCount)
+
+# Merge data based on the common variable "YEAR"
+merged_data <- merge(waterDepth, salamanderCount, by = "YEAR")
+
+
+# Plot average PH on x-axis and average salamander count on y-axis
+plot <- ggplot(merged_data, aes(x = WaterDepth, y = average_salamander)) +
+  geom_point(color = "blue") +
+  labs(x = "Average Water Depth", y = "Average Salamander Count", 
+       title = "Average Water Depth vs Average Salamander Count")
+plot
+```
+```{r}
+# Install and load necessary libraries
+# install.packages(c("ggplot2", "mgcv"))
+library(ggplot2)
+library(mgcv)
+
+# Linear Regression
+linear_model <- lm(average_salamander ~ WaterDepth, data = merged_data)
+
+# Quadratic Regression
+quadratic_model <- lm(average_salamander ~ poly(WaterDepth, 2), data = merged_data)
+
+# GAM (Generalized Additive Model)
+gam_model <- gam(average_salamander ~ s(WaterDepth), data = merged_data)
+
+# Create a scatter plot
+scatter_plot <- ggplot(merged_data, aes(x = WaterDepth, y = average_salamander)) +
+  geom_point(color = "blue") +
+  labs(x = "Average Water Depth", y = "Average Salamander Count", 
+       title = "Average Water Depth vs Average Salamander Count")
+
+# Plot linear regression line
+linear_plot <- scatter_plot +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red")
+
+# Plot quadratic regression line
+quadratic_plot <- scatter_plot +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, color = "green")
+
+# Plot GAM
+gam_plot <- scatter_plot +
+  geom_smooth(method = "gam", formula = y ~ s(x), se = FALSE, color = "purple")
+
+
+
+```
+
+```{r}
+summary(linear_model)
+print(linear_plot)
+
+```
+
+```{r}
+summary(quadratic_model)
+print(quadratic_plot)
+
+```
+
+```{r}
+summary(gam_model)
+print(gam_plot)
+
+```
+
