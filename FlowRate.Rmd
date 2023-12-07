@@ -1,0 +1,89 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+# Load  libraries
+library(openxlsx)
+library(ggplot2)
+
+# Load data
+excel_file <- "~/Data-Science-G7/flow_1.xlsx"
+flowRate <- read.xlsx(excel_file, sheet = 3)  
+
+#  scatter plot
+scatter_plot <- ggplot(flowRate, aes(x = Average_flow, y = Average_salamander_count)) +
+  geom_point(color = "blue") +
+  labs(x = "Average Flow", y = "Average Salamander Count", 
+       title = "Scatter Plot of Average Flow vs Average Salamander Count")
+
+# Display 
+print(scatter_plot)
+
+```
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(mgcv)
+
+# Linear Regression
+linear_model <- lm(Average_salamander_count ~ Average_flow, data = flowRate)
+
+# Quadratic Regression
+quadratic_model <- lm(Average_salamander_count ~ poly(Average_flow, 2), data = flowRate)
+
+# Logarithmic Regression
+log_model <- lm(log(Average_salamander_count) ~ Average_flow, data = flowRate)
+
+# GAM (Generalized Additive Model)
+gam_model <- gam(Average_salamander_count ~ s(Average_flow), data = flowRate)
+
+# Create a scatter plot
+scatter_plot <- ggplot(flowRate, aes(x = Average_flow, y = Average_salamander_count)) +
+  geom_point(color = "blue") +
+  labs(x = "Average Flow", y = "Average Salamander Count", 
+       title = "Scatter Plot of Average Flow vs Average Salamander Count")
+
+# Plot linear regression line
+linear_plot <- scatter_plot +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red")
+
+# Plot quadratic regression line
+quadratic_plot <- scatter_plot +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, color = "green")
+
+# Plot logarithmic regression line
+log_plot <- ggplot(flowRate, aes(x = Average_flow, y = log(Average_salamander_count))) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "orange") +
+  labs(x = "Average Flow", y = "Log(Average Salamander Count)", 
+       title = "Scatter Plot of Average Flow vs Log(Average Salamander Count)")
+
+# Plot GAM
+gam_plot <- scatter_plot +
+  geom_smooth(method = "gam", formula = y ~ s(x), se = FALSE, color = "purple")
+
+
+
+```
+
+```{r}
+# Display the plots
+print(linear_plot)
+summary(linear_model)
+
+```
+```{r}
+print(quadratic_plot)
+summary(quadratic_model)
+```
+```{r}
+print(log_plot)
+summary(log_model)
+```
+```{r}
+print(gam_plot)
+summary(gam_model)
+```
+

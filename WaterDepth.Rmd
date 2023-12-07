@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r}
 waterDepth <- "~/Data-Science-G7/WaterDepth.xlsx"
 
@@ -40,7 +45,10 @@ linear_model <- lm(average_salamander ~ WaterDepth, data = merged_data)
 # Quadratic Regression
 quadratic_model <- lm(average_salamander ~ poly(WaterDepth, 2), data = merged_data)
 
+# Logarithmic Regression
+log_model <- lm(log(average_salamander) ~ WaterDepth, data = merged_data)
 # GAM (Generalized Additive Model)
+
 gam_model <- gam(average_salamander ~ s(WaterDepth), data = merged_data)
 
 # Create a scatter plot
@@ -56,6 +64,13 @@ linear_plot <- scatter_plot +
 # Plot quadratic regression line
 quadratic_plot <- scatter_plot +
   geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, color = "green")
+
+# Plot logarithmic regression line
+log_plot <- ggplot(merged_data, aes(x = WaterDepth, y = log(average_salamander))) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "orange") +
+  labs(x = "Average Water Depth", y = "Log(Average Salamander Count)", 
+       title = "Scatter Plot of Average Water Depth vs Log(Average Salamander Count)")
 
 # Plot GAM
 gam_plot <- scatter_plot +
@@ -75,6 +90,10 @@ print(linear_plot)
 summary(quadratic_model)
 print(quadratic_plot)
 
+```
+```{r}
+summary(log_model)
+print(log_plot)
 ```
 
 ```{r}
