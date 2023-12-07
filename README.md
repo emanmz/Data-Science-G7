@@ -7,14 +7,18 @@
 This data science project investigates the relationship between water quality parameters and the population sizes of Barton Springs Salamanders in Austin, Texas. Barton Springs Salamanders are a vulnerable species, and understanding how water quality affects their population is crucial for ecological preservation. This project utilizes a dataset obtained from the [Austin Open Data Portal](http://data.austintexas.gov) to conduct a comprehensive analysis.
 
 ## Table of Contents:
-
+- **Final Report**
+-   Final Report.pdf
 - **Visualizations and Modeling Code**
   - DissolvedOxygenvsSalamander.Rmd
   - PH.Rmd
   - SiteVsSalamander.Rmd
   - TimeVsSalamander.Rmd
   - DissolvedOxygenOverTime.Rmd
+  - WaterDepth.Rmd
+  - FlowRate.Rmd
   - FlowType.Rmd
+  - MultipleRegression.Rmd
   
   ***For pdf layouts:***
   - visualizations code pdf (Folder)
